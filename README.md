@@ -2,7 +2,16 @@
 
 30s左右就可以理解的有用的Python代码snippets. https://python.30secondsofcode.org/
 
+<br>
 
+## Contents
++ [List](#one-list)
++ [Object](#two-object)
++ [String](#three-string)
++ [Utility](#four-utility)
++ [Math](#five-math)
+
+<br>
 
 ## :one: List
 
@@ -323,7 +332,6 @@
 16.  **group_by**
 
      Groups the elements of a list based on the given function.
-     
 
 <br>
 
