@@ -1,7 +1,10 @@
-# 30-seconds-of-python-cn
+# 30-seconds-of-python
+
 30s左右就可以理解的有用的Python代码snippets. https://python.30secondsofcode.org/
 
-## 1. List
+
+
+## :one: List
 
 1.  **all_equal**
 
@@ -195,29 +198,27 @@
     # Example
     deep_flatten([1, [2], [[3], 4], 5])
     ```
-    
 
 <br>
 
 10.  **difference**
 
-   两个可迭代对象（iterables）的difference。
+     两个可迭代对象（iterables）的difference。
 
-   ```python
-   def difference(a, b):
-       _b = set(b)
-       return [item for item in a if item not in _b]
-   
-   
-   # set(a)后结果会少
-   def difference(a, b):
-       return list(set(a) - set(b))
-   
-   
-   # Example
-   difference([1, 2, 3], [1, 2, 4])  # [3]
-   ```
+     ```python
+     def difference(a, b):
+         _b = set(b)
+         return [item for item in a if item not in _b]
+    
+    
+     # set(a)后结果会少
+     def difference(a, b):
+         return list(set(a) - set(b))
 
+
+     # Example
+     difference([1, 2, 3], [1, 2, 4])  # [3]
+     ```
 
 <br>
 
@@ -234,8 +235,7 @@
      
      
      # Example
-     from math import floor
-     difference_by([2.1, 1.2], [2.3, 3.4], floor)  # [1.2]
+     difference_by([2.1, 1.2], [2.3, 3.4], math.floor)  # [1.2]
      difference_by([{'x': 2}, {'x': 1}], [{'x': 1}], lambda v: v['x'])  # [{'x', 2}]
      ```
 
@@ -324,9 +324,10 @@
 
      Groups the elements of a list based on the given function.
      
-     
 
-## 2 Object
+<br>
+
+## :two: Object
 
 1.  **keys_only**
 
@@ -389,7 +390,7 @@
 
 <br>
 
-## 3. String
+## :three: String
 
 1.  **byte_size**
 
@@ -639,7 +640,7 @@
 
 <br>
 
-## 4. Utility
+## :four: Utility
 
 1.  **cast_list**
 
@@ -653,11 +654,13 @@
 
 <br>
 
-## 5 Math
+## :five: Math
 
 1.  **average**
 
     Returns the average of two or more numbers.
+
+    两个及两个以上数字的和。
 
     ```python
     def average(*args):
@@ -670,37 +673,278 @@
     average(*[1, 2, 3])  # (1, 2, 3)  2.0
     ```
 
+<br>
+
 2.  **average_by**
 
     Returns the average of a list, after mapping each element to  value using the provided function.
 
+    list元素转换后求和。
+    
     ```python
     def average_by(ll: list, fn):
-        return sum(map(fn, ll), 0.) / len(ll)
+    return sum(map(fn, ll), 0.) / len(ll)
+    
+    
+    # Example
+    average_by([{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }], lambda x: x['n']) # 5.0
     ```
 
+<br>
+
+3.  **clamp_number**
+
+    Clamps `num` within the inclusive range specified by the boundary values `a` and `b`.
+
+    If `num` falls within the range, return `num`. Otherwise, return the nearest number in the range.
+
+    ```python
+    def clamp_number(number, a, b):
+        return max(min(num, max(a, b)), min(a, b))
     
+    
+    # Example
+    clamp_number(2, 3, 5) # 3
+    clamp_number(1, -1, -5) # -1
+    ```
+
+<br>
+
+4.  **digitize**
+
+    Converts a number to an array of digits.
+
+    一个number转换为0-9组成的数组。
+
+    ```python
+    def digitize(num):
+        return list(map(int, str(num)))
+    
+    
+    # Example
+    digitize(123) # [1, 2, 3]
+    ```
+
+<br>
+
+5.  **factorial** (阶乘)
+
+    Calculates the factorial of a number.
+
+    ```python
+    def factorial(num):
+        # num % 1 == 0 判断是否是整数
+        if not ((num >= 0) & (num % 1 == 0)):
+            raise Exception(
+                r"Number {} can't be floating point or negative.".format(num))
+        return 1 if num == 0 else num * factorial(num - 1)
+    
+    
+    # Example
+    factorial(6)
+    ```
+
+<br>
+
+6.  **fibonacci**
+
+    Generates an array, containing the Fibonacci sequence, up until the nth term.
+
+    ```python
+    def fibonacci(n):
+        if n <= 0:
+            return [0]
+    
+        seq = [0, 1]
+        while len(seq) <= n:
+            seq_len = len(seq)
+            next_value = seq[seq_len - 1] + seq[seq_len - 2]
+            seq.append(next_value)
+        return seq
+    
+    
+    # Example
+    fibonacci(7) # [0, 1, 1, 2, 3, 5, 8, 13]
+    ```
+
+<br>
+
+7.  **gcd**
+
+    Calculates the greatest common divisor of a list of numbers.
+
+    最大公约数。
+
+    ```python
+    def gcd(numbers):
+        return functools.reduce(math.gcd, numbers)
+    
+    
+    # Example
+    gcd([8, 36, 28]) # 4
+    ```
+
+<br>
+
+8.  **in_range**
+
+    Checks if the given number falls within the given range.
+
+    给定数是否在给定范围内。
+
+    ```python
+    def in_range(n, start, end=0):
+        if start > end:
+            end, start = start, end
+        return start <= n < end
+    
+    
+    # Example
+    in_range(3, 4) # True
+    in_range(2, 3, 5) # False
+    ```
+
+<br>
+
+9.  **is_divisible**
+
+    Checks if the first numeric argument is divisible by the second one.
+
+    ```python
+    def is_divisible(dividend, divisor):
+        return dividend % divisior == 0
+    
+    
+    # Example
+    is_divisible(6, 3) # True
+    ```
+
+<br>
+
+10.  **is_even**
+
+     Returns `True` if the given number is even (偶数), `False` otherwise (odd奇数).
+
+     ```python
+     def is_even(num):
+         return num % 2 == 0
+     
+     
+     # Example
+     is_even(10)  # True
+     is_even(9)   # False
+     ```
+
+<br>
+
+11. **is_odd**
+
+     Returns `True` if the given number is odd, `False` otherwise.
+
+     ```python 
+     def is_odd(num):
+         return num % 2 != 0
 
 
+     # Example
+     is_even(10)  # False
+     is_even(9)   # True
+     ```
 
+<br>
 
+12.  **max_by**
 
+     Returns the maximum value of a list, after mapping each element to a value using the provided function.
 
+     ```python
+     def max_by(ll, fn):
+         return max(list(map(fn, ll)))
+     
+     
+     # Example
+     max_by([{'n': 4}, {'n': 2}, {'n': 8}, {'n': 6}], lambda v: v['n']) # 8
+     ```
 
+<br>
 
+13.  **min_by**
 
+     Returns the minimum value of a list, after mapping each element to a value using the provided function.
 
+     ```python
+     def min_by(ll, fn):
+         return min(list(map(fn, ll)))
+     
+     
+     # Example
+     min_by([{'n': 4}, {'n': 2}, {'n': 8}, {'n': 6}], lambda v: v['n']) # 2
+     ```
 
+<br>
 
+14.  **rads_to_degrees**
 
+     Converts an angle from radians to degrees.
 
+     ```python
+     def rads_to_degrees(rad):
+         return (rad * 180.) / math.pi
+     
+     
+     # Example
+     rads_to_degrees(math.pi / 2) # 90.0
+     ```
 
+<br>
 
+15.  **sum_by**
 
+     Returns the sum of a list, after mapping each element to a value using the provided function.
 
+     ```python
+     def sum_by(ll, fn):
+         return sum(list(map(fn, ll)))
+     
+     
+     # Example
+     sum_by([{'n': 4}, {'n': 2}, {'n': 8}, {'n': 6}], lambda v: v['n']) # 20
+     ```
 
+<br>
 
+16.  **lcm**
 
+     Returns the least common multiple of two or more numbers.
 
+     最小公倍数。
 
+     Define a function, `spread`, that uses either `list.extend()` or `list.append()` on each element in a list to flatten it. Use `math.gcd()` and `lcm(x,y) = x * y / gcd(x,y)` to determine the least common multiple.
+
+     ```python
+     def spread(arg):
+         res = []
+         for i in arg:
+             if isinstance(i, list):
+                 res.extend(i)
+             else:
+                 res.append(i)
+         return res
+     
+     
+     def lcm(*args):
+         numbers = []
+         numbers.extend(spread(list(args)))
+     
+         def _lcm(x, y):
+             return int(x * y / math.gcd(x, y))
+     
+         return functools.reduce((lambda x, y: _lcm(x, y)), numbers)
+     
+     
+     # Example
+     lcm(4, 5)      # 20
+     lcm(6, 12)     # 12
+     lcm([1, 2], 3) # 6  
+     ```
 
