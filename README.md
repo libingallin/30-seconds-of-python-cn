@@ -335,6 +335,8 @@
 
 <br>
 
+[:arrow_up: Back to top](#contents)
+
 ## :two: Object
 
 1.  **keys_only**
@@ -397,6 +399,8 @@
     ```
 
 <br>
+
+[:arrow_up: Back to top](#contents)
 
 ## :three: String
 
@@ -648,6 +652,8 @@
 
 <br>
 
+[:arrow_up: Back to top](#contents)
+
 ## :four: Utility
 
 1.  **cast_list**
@@ -659,8 +665,9 @@
         return val if isinstance(val, list) else [val]
     ```
 
-
 <br>
+
+[:arrow_up: Back to top](#contents)
 
 ## :five: Math
 
@@ -955,4 +962,6 @@
      lcm(6, 12)     # 12
      lcm([1, 2], 3) # 6  
      ```
+
+[:arrow_up: Back to top](#contents)
 
